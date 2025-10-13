@@ -6,6 +6,14 @@
   <title>Tawāfuq | منصّة وطنية لتنظيم الخطبة وبناء قرار زواج واعٍ</title>
   <meta name="description" content="Tawāfuq – منصّة وطنية لتنظيم الخطبة وبناء قرار زواج واعٍ عبر اختبارات توافق، تواصل شرعي منضبط، محتوى توعوي، وإرشاد أسري."/>
 
+  <!-- Favicon (Mono SVG as Data URL) -->
+  <link rel="icon" type="image/svg+xml" href='data:image/svg+xml;utf8,
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+    <circle cx="60" cy="60" r="54" fill="none" stroke="%230B7C7E" stroke-width="10"/>
+    <path d="M60 90C42 78 28 66 28 50c0-10 8-18 18-18 8 0 13 4 14 9 1-5 6-9 14-9 10 0 18 8 18 18 0 16-14 28-32 40z" fill="%230B7C7E"/>
+    <path d="M44 58l12 12 24-24" fill="none" stroke="white" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>'>
+
   <!-- Tailwind via CDN -->
   <script defer src="https://cdn.tailwindcss.com"></script>
 
@@ -30,8 +38,6 @@
     .bg-sand{ background: var(--sand); }
     .badge{ display:inline-block; padding:.25rem .5rem; border:1px solid #e5e7eb; border-radius:.5rem; font-size:.75rem }
     .card{ background:#fff; border:1px solid #e5e7eb; border-radius:1rem; padding:1rem }
-
-    /* Buttons */
     .btn{ padding:.6rem 1rem; border-radius:.8rem; font-weight:700; display:inline-flex; align-items:center; gap:.5rem; }
     .btn-brand{ background:var(--brand); color:#fff; }
     .btn-ghost{ background:#f3f4f6; }
@@ -40,7 +46,6 @@
     .text-warn{ color:var(--warn); }
     .text-danger{ color:var(--danger); }
 
-    /* Print-only for certificate */
     @media print{
       header, aside, nav, #about, #accounts, #subs, #sponsor, #support, #kpis, #test .grid, #advisors-admin, #bookings, #governance, #policies, #terms, footer { display:none !important; }
       #resultsArea{ display:block !important; }
@@ -53,37 +58,35 @@
   <!-- Toast -->
   <div id="toast" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 hidden px-4 py-2 rounded-lg text-white"></div>
 
-  <!-- ===== Header with inline SVG logo (Tawāfuq) + Talbiya + Vision 2030 ===== -->
+  <!-- ===== Header: يمين شعار توافق | يسار رؤية 2030 ثم تلبية ===== -->
   <header class="bg-white/90 backdrop-blur border-b sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto px-4 py-3 grid grid-cols-2 items-center">
-      <!-- يمين: شعار توافق (SVG مضمّن) -->
-      <div class="justify-self-start flex items-center gap-3">
-        <!-- SVG Logo: Tawāfuq -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 140" role="img" aria-label="توافق Tawāfuq" class="h-12 md:h-14 w-auto">
-          <defs>
-            <linearGradient id="tg" x1="0" x2="1" y1="0" y2="1">
-              <stop offset="0%" stop-color="#0EA5A8"/>
-              <stop offset="100%" stop-color="#0B7C7E"/>
-            </linearGradient>
-          </defs>
-          <!-- Icon (heart + check inside ring) -->
-          <g transform="translate(6,6)">
-            <circle cx="58" cy="58" r="58" fill="none" stroke="#0EA5A8" stroke-width="8"/>
-            <path d="M58 90C40 78 26 66 26 50c0-10 8-18 18-18 8 0 13 4 14 9 1-5 6-9 14-9 10 0 18 8 18 18 0 16-14 28-32 40z" fill="url(#tg)"/>
-            <path d="M42 58l10 10 24-24" fill="none" stroke="#E7D7C9" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-          </g>
-          <!-- Wordmark -->
-          <text x="145" y="62" font-size="44" font-weight="800" fill="#0B7C7E" font-family="Tajawal, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">توافق</text>
-          <text x="147" y="98" font-size="22" font-weight="700" fill="#0EA5A8" font-family="Inter, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Tawāfuq</text>
-          <text x="147" y="122" font-size="14" fill="#64748B" font-family="Tajawal, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">منصّة وطنية لتنظيم الخطبة وبناء قرار زواج واعٍ</text>
-        </svg>
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+
+      <!-- يمين: شعار "توافق" (من الملف المرفق) -->
+      <div class="flex items-center gap-3">
+        <img src="Tawafuq.logo.svg" alt="توافق | Tawāfuq" class="h-10 md:h-12 w-auto" />
       </div>
 
-      <!-- يسار: رؤية 2030 أقصى اليسار، وعن يمينه تلبية -->
-      <div class="justify-self-end flex items-center gap-3">
-        <img src="talbiya.png" alt="شعار مبادرة تلبية" class="h-9 w-auto" />
+      <!-- منتصف: قائمة التنقل -->
+      <nav class="hidden md:flex items-center gap-1 text-sm">
+        <a href="#about" class="px-3 py-2 rounded-lg hover:bg-gray-100">عن توافق</a>
+        <a href="#kpis" class="px-3 py-2 rounded-lg hover:bg-gray-100">المؤشرات</a>
+        <a href="#accounts" class="px-3 py-2 rounded-lg hover:bg-gray-100">الحسابات</a>
+        <a href="#test" class="px-3 py-2 rounded-lg hover:bg-gray-100">اختبار التوافق</a>
+        <a href="#verify" class="px-3 py-2 rounded-lg hover:bg-gray-100">استعلام رقم التوافق</a>
+        <a href="#wali" class="px-3 py-2 rounded-lg hover:bg-gray-100">موافقة الولي</a>
+        <a href="#advisors-admin" class="px-3 py-2 rounded-lg hover:bg-gray-100">إدارة المستشارين</a>
+        <a href="#bookings" class="px-3 py-2 rounded-lg hover:bg-gray-100">الحجوزات</a>
+        <a href="#subs" class="px-3 py-2 rounded-lg hover:bg-gray-100">الاشتراكات</a>
+        <a href="#support" class="px-3 py-2 rounded-lg hover:bg-gray-100">الدعم</a>
+      </nav>
+
+      <!-- يسار: رؤية 2030 (أقصى اليسار) ثم مبادرة تلبية -->
+      <div class="flex items-center gap-3">
         <img src="vision2030.png" alt="شعار رؤية 2030" class="h-9 w-auto" />
+        <img src="talbiya.png" alt="شعار مبادرة تلبية" class="h-9 w-auto" />
       </div>
+
     </div>
   </header>
 
@@ -169,7 +172,7 @@
           </div>
           <div class="border rounded-xl p-4">
             <div class="font-bold">نخبوي</div>
-            <div class="text-2xl font-extrabولد text-brand">299 ر.س</div>
+            <div class="text-2xl font-extrabold text-brand">299 ر.س</div>
             <ul class="text-sm text-gray-700 list-disc pr-5 mt-2">
               <li>جلسة استشارية</li>
               <li>شهادة توافق PDF</li>
@@ -320,7 +323,7 @@
               <option value="استشارة شرعية 30 دقيقة">استشارة شرعية 30 دقيقة</option>
             </select>
           </label>
-          <label class="block text-sm">التاريخ
+          <label class="block text_sm">التاريخ
             <input id="bkDate" type="date" class="mt-1 w-full border rounded-lg px-3 py-2" />
           </label>
           <label class="block text-sm">الوقت المتاح
@@ -376,9 +379,8 @@
     </main>
   </div>
 
-  <!-- App Script (deferred behavior relies on DOMContentLoaded) -->
+  <!-- App Script -->
   <script>
-  // --- Toast helper ---
   function notify(type, msg){
     const el = document.getElementById('toast');
     const bg = type==='ok' ? 'bg-green-600' : type==='warn' ? 'bg-yellow-600' : 'bg-red-600';
@@ -387,17 +389,14 @@
     setTimeout(()=>{ el.style.opacity=0; setTimeout(()=>el.classList.add('hidden'), 300); }, 2500);
   }
 
-  // --- LocalStorage helpers ---
   const PLAN_KEY='tawafuq_plan';
   function savePlan(name){ localStorage.setItem(PLAN_KEY, name); notify('ok','تم حفظ الباقة: '+name); }
 
-  // Support draft
   const SUP_KEY='tawafuq_support_draft_v1';
   function saveSupportDraft(){ const o={n:supName.value,m:supMail.value,t:supMsg.value}; localStorage.setItem(SUP_KEY, JSON.stringify(o)); notify('ok','تم حفظ المسودة'); }
   function clearSupportDraft(){ localStorage.removeItem(SUP_KEY); supName.value=''; supMail.value=''; supMsg.value=''; notify('ok','تم المسح'); }
   function restoreSupportDraft(){ try{ const o=JSON.parse(localStorage.getItem(SUP_KEY)||'{}'); if(o.n) supName.value=o.n; if(o.m) supMail.value=o.m; if(o.t) supMsg.value=o.t; }catch(e){} }
 
-  // --- Advisors Admin (Local) ---
   const ADV_KEY='tawafuq_advisors_v1';
   function loadAdvisors(){ try{ return JSON.parse(localStorage.getItem(ADV_KEY))||[] }catch(e){ return [] } }
   function saveAdvisors(x){ localStorage.setItem(ADV_KEY, JSON.stringify(x)); }
@@ -421,7 +420,6 @@
     body.innerHTML=html;
   }
 
-  // ===== Bookings Logic =====
   var BK_KEY = 'tawafuq_bookings_v1';
   function loadBookings(){ try { return JSON.parse(localStorage.getItem(BK_KEY)) || []; } catch(e){ return []; } }
   function saveBookings(list){ localStorage.setItem(BK_KEY, JSON.stringify(list)); }
@@ -508,7 +506,6 @@
     ]; saveBookings(demo); renderBookings();
   }
 
-  // --- KPI Chart (demo) ---
   function renderKPI(){
     if(!window.Chart) return;
     const ctx=document.getElementById('kpiChart'); if(!ctx) return;
@@ -516,8 +513,7 @@
     new Chart(ctx,{ type:'bar', data, options:{ responsive:true, plugins:{legend:{display:false}} } });
   }
 
-  // --- Smart Test Session ---
-  const SESS_KEY='tawafuq_sessions_v3'; // sessions by code
+  const SESS_KEY='tawafuq_sessions_v3';
   function loadSessions(){ try{ return JSON.parse(localStorage.getItem(SESS_KEY))||{} }catch(e){ return {} } }
   function saveSessions(o){ localStorage.setItem(SESS_KEY, JSON.stringify(o)); }
 
@@ -579,7 +575,6 @@
         box.appendChild(wrap);
       })
     });
-    // attach autosave handlers
     box.querySelectorAll('select').forEach(sel=>{
       sel.addEventListener('change', ()=>{
         const key='tawafuq_progress_'+currentCode+'_'+currentParty; const obj=JSON.parse(localStorage.getItem(key)||'{}');
@@ -602,9 +597,9 @@
     return {answers, valid};
   }
 
-  function computeAxisScore(arr){ if(!arr.length) return 0; const sum=arr.reduce((a,b)=>a+b,0); const max=arr.length*5; return Math.round((sum/max)*100); }
-  function similarityScore(a1,a2){ // absolute distance similarity
-    const len=Math.min(a1.length, a2.length); let sim=0; for(let i=0;i<len;i++){ sim += 1 - (Math.abs(a1[i]-a2[i])/4); } return Math.round((sim/len)*100); }
+  function similarityScore(a1,a2){
+    const len=Math.min(a1.length, a2.length); let sim=0; for(let i=0;i<len;i++){ sim += 1 - (Math.abs(a1[i]-a2[i])/4); } return Math.round((sim/len)*100);
+  }
 
   function submitAnswers(){
     if(!currentCode||!currentParty) return notify('warn','أنشئ أو انضم إلى جلسة أولًا');
@@ -613,18 +608,15 @@
     const pack={ answers, meta:{ region:region.value, religion:religion.value, age:parseInt(age.value||'0'), edu:edu.value, fin:fin.value } };
     S[currentParty]=pack; sessions[currentCode]=S; saveSessions(sessions);
 
-    // If both parties answered -> compute
-    if(S.male && S.female){
+    if(S.male and S.female){
       const axisScores={}; let total=0;
       AXES.forEach(ax=>{
         const a1=S.male.answers[ax.key]; const a2=S.female.answers[ax.key];
         const sim=similarityScore(a1,a2); axisScores[ax.key]=sim; total += sim*ax.weight;
       });
-      // demography similarity (age/edu/region/religion/fin)
-      const dm = demoSimilarity(S.male.meta, S.female.meta); // 0..100
+      const dm = demoSimilarity(S.male.meta, S.female.meta);
       const final = Math.round(total*0.75 + dm*0.25);
       showResults(final, axisScores);
-      // clear progress
       localStorage.removeItem('tawafuq_progress_'+currentCode+'_male');
       localStorage.removeItem('tawafuq_progress_'+currentCode+'_female');
     } else {
@@ -634,7 +626,6 @@
 
   function demoSimilarity(m,f){
     if(!m||!f) return 0; let s=0, n=0;
-    // age within ±3 -> full, ±6 -> 70, else 40 baseline
     if(m.age && f.age){ const d=Math.abs(m.age-f.age); s += (d<=3?100:(d<=6?70:40)); n++; }
     if(m.edu && f.edu){ s += (m.edu===f.edu?100:60); n++; }
     if(m.region && f.region){ s += (m.region===f.region?100:70); n++; }
@@ -653,7 +644,6 @@
     let html=''; Object.keys(axis).forEach(k=>{ html+=`<div class="badge">${mapTitle[k]}: ${axis[k]}%</div> ` });
     document.getElementById('axisBreakdown').innerHTML=html;
 
-    // QR for verification URL-like (local model)
     const qrBox=document.getElementById('qrContainer'); qrBox.innerHTML='';
     const div=document.createElement('div'); qrBox.appendChild(div);
     const payload = JSON.stringify({code, score:final});
@@ -663,7 +653,6 @@
   }
 
   function dataURLFromQRCodeElement(el){
-    // qrcodejs renders <img> or <canvas>
     const img=el.querySelector('img'); if(img) return img.src;
     const cvs=el.querySelector('canvas'); if(cvs) return cvs.toDataURL('image/png');
     return null;
@@ -678,20 +667,17 @@
     doc.text('شهادة توافق – Tawāfuq Compatibility Certificate', 48, y); y+=28;
     doc.setFont('helvetica',''); doc.setFontSize(12);
     doc.text('رقم التوافق: '+code, 48, y); y+=16; doc.text('النسبة النهائية: '+score, 48, y); y+=16; doc.text('التاريخ: '+date, 48, y); y+=24;
-    // add QR if present
     const qc=document.getElementById('qrContainer'); const dataURL=dataURLFromQRCodeElement(qc);
     if(dataURL){ doc.addImage(dataURL, 'PNG', 48, y, 96, 96); y+=112; }
     doc.text('هذه شهادة تجريبية محلية لأغراض العرض.', 48, y);
     doc.save('Tawafuq_Certificate_'+code+'.pdf');
   }
 
-  // Verify lookup
   function lookupVerification(){
     const code=(document.getElementById('verifyCode').value||'').trim().toUpperCase();
     const box=document.getElementById('verifyBox'); box.classList.remove('hidden');
     if(!validCodeFormat(code)){ box.innerHTML='<div class="text-danger">صيغة الرقم غير صحيحة.</div>'; return; }
     const S=loadSessions()[code]; if(!S||!S.male||!S.female){ box.innerHTML='<div class="text-warn">لا تتوفر بيانات مكتملة لهذا الرقم.</div>'; return; }
-    // recompute for view
     const axis={}; let total=0; AXES.forEach(ax=>{ const sim=similarityScore(S.male.answers[ax.key], S.female.answers[ax.key]); axis[ax.key]=sim; total+=sim*ax.weight; });
     const dm=demoSimilarity(S.male.meta,S.female.meta); const final=Math.round(total*0.75+dm*0.25);
     const mapTitle={values:'القيم', goals:'الأهداف', traits:'السمات', finance:'المال', comm:'التواصل'};
@@ -699,8 +685,7 @@
     box.innerHTML = `<div class="p-3 bg-white border rounded-xl"><div class="text-lg font-bold text-brand">${final}%</div><div class="mt-2">${badges}</div><div class="text-xs text-gray-500 mt-2">نتيجة محسوبة محليًا (تجريبي)</div></div>`;
   }
 
-  // Wali consent signature
-  let drawing=false, sp=null;
+  let drawing=false;
   function signInit(){ const c=document.getElementById('signPad'); if(!c) return; const ctx=c.getContext('2d'); ctx.strokeStyle='#000'; ctx.lineWidth=2; function pos(e){ const r=c.getBoundingClientRect(); const x=(e.touches?e.touches[0].clientX:e.clientX)-r.left; const y=(e.touches?e.touches[0].clientY:e.clientY)-r.top; return {x,y}; }
     c.addEventListener('mousedown',e=>{drawing=true; const p=pos(e); ctx.beginPath(); ctx.moveTo(p.x,p.y)});
     c.addEventListener('mousemove',e=>{ if(!drawing) return; const p=pos(e); ctx.lineTo(p.x,p.y); ctx.stroke(); });
@@ -719,8 +704,9 @@
     document.getElementById('waliMsg').textContent='تم حفظ موافقة وليّ الأمر.'; notify('ok','حُفظت الموافقة');
   }
 
+  function renderKPI_SAFE(){ try{ renderKPI(); }catch(e){} }
   document.addEventListener('DOMContentLoaded',function(){
-    restoreSupportDraft(); renderAdvisors(); rebuildAdvisorSelect(); renderBookings(); renderKPI(); signInit();
+    restoreSupportDraft(); renderAdvisors(); rebuildAdvisorSelect(); renderBookings(); renderKPI_SAFE(); signInit();
   });
   </script>
 </body>
