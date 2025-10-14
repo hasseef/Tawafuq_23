@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>توافق | Tawāfuq — منصّة وطنية لتنظيم الخطبة وبناء قرار زواج واعٍ</title>
-  <meta name="description" content="توافق | Tawāfuq — منصّة وطنية ذكية لخفض الطلاق المبكر ورفع جودة قرار الزواج عبر اختبارات توافق، تواصل شرعي بإشراف، محتوى توعوي، وإرشاد أسري مع تكاملات حكومية." />
+  <meta name="description" content="منصّة وطنية ذكية تقلّل الطلاق المبكر وترفع جودة قرار الزواج عبر اختبارات توافق، تواصل شرعي بإشراف، ومحتوى توعوي." />
 
   <!-- Tailwind -->
   <script defer src="https://cdn.tailwindcss.com"></script>
@@ -17,61 +17,56 @@
 
   <style>
     :root{
-      /* هوية توافق */
+      /* ألوان هوية توافق */
       --brand:#0EA5A8; --brand-dk:#0B7C7E; --sand:#E7D7C9; --accent:#8B5CF6;
       --ink:#0f172a; --muted:#64748b; --surface:#ffffff;
       --success:#16A34A; --warn:#EAB308; --danger:#DC2626;
     }
-    body{color:#0f172a;background:#F8FAFC}
     .bg-brand{background:var(--brand)} .text-brand{color:var(--brand)} .text-brand-dk{color:var(--brand-dk)}
     .bg-sand{background:var(--sand)}
-    .card{background:#fff;border:1px solid rgba(15,23,42,.08);border-radius:1.25rem;padding:1.25rem}
+    .card{background:rgba(255,255,255,.9); border:1px solid rgba(15,23,42,.07); border-radius:1.25rem; padding:1.25rem; backdrop-filter: blur(8px)}
     .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1rem;border-radius:.9rem;font-weight:700}
-    .btn-brand{background:var(--brand);color:#fff} .btn-ghost{background:#f3f4f6}
+    .btn-brand{background:var(--brand);color:#fff}
+    .btn-ghost{background:#f3f4f6}
     .chip{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .6rem;border:1px solid rgba(15,23,42,.08);border-radius:.7rem;font-size:.8rem}
-    .badge{display:inline-block;padding:.25rem .5rem;border:1px solid #e5e7eb;border-radius:.5rem;font-size:.75rem}
+    .shadow-soft{box-shadow:0 10px 30px rgba(14,165,168,.15)}
     .hero-grad{background:
       radial-gradient(1200px 500px at 70% -10%, rgba(14,165,168,.18), transparent 60%),
       radial-gradient(1000px 500px at -10% 10%, rgba(139,92,246,.12), transparent 60%)}
     section{scroll-margin-top:90px}
-    @media print{ header, nav, footer, #hero {display:none!important} #resultsArea{display:block!important} }
+    .badge{ display:inline-block; padding:.25rem .5rem; border:1px solid #e5e7eb; border-radius:.5rem; font-size:.75rem }
+    @media print{ nav, header, footer, #hero {display:none!important} #resultsArea{display:block!important} }
 
-    /* هيدر متجاوب */
-    .brand-area img{height:40px;width:auto}
-    @media(min-width:768px){ .brand-area img{height:44px} }
+    /* الهيدر والشعارات */
+    .brand-right img{height:56px;width:auto}        /* شعار توافق أكبر */
+    .brand-left img{height:40px;width:auto;opacity:.95} /* رؤية + تلبية أصغر قليلاً */
+    @media (min-width:768px){
+      .brand-right img{height:60px}
+      .brand-left img{height:44px}
+    }
   </style>
 </head>
-<body>
-  <!-- شارة النسخة للتأكد من التحديث -->
-  <div class="fixed bottom-3 right-3 z-50 text-[11px] px-2 py-1 rounded-lg border bg-white/90">Build: Tawāfuq v25.10.14</div>
-
+<body class="bg-gray-50 text-slate-800">
   <!-- Toast -->
   <div id="toast" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 hidden px-4 py-2 rounded-lg text-white"></div>
 
   <!-- Header -->
   <header class="bg-white/90 backdrop-blur border-b sticky top-0 z-40">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-      <!-- يمين: شعار توافق (SVG مضمّن) -->
-      <a href="#hero" class="brand-area order-1 flex items-center" aria-label="Tawāfuq Home">
-        <svg width="150" height="36" viewBox="0 0 740 180" xmlns="http://www.w3.org/2000/svg" style="display:block">
-          <defs>
-            <linearGradient id="tg" x1="0" y1="0" x2="1" y2="1">
-              <stop stop-color="#0EA5A8" offset="0"/><stop stop-color="#0B7C7E" offset="1"/>
-            </linearGradient>
-          </defs>
-          <circle cx="38" cy="90" r="26" fill="url(#tg)"/>
-          <circle cx="64" cy="90" r="26" fill="#E7D7C9"/>
-          <text x="100" y="105" font-family="Tahoma, Arial" font-weight="700" font-size="42" fill="#0B7C7E">Tawāfuq</text>
-        </svg>
+      <!-- يمين: شعار توافق -->
+      <a href="#hero" class="brand-right order-1 flex items-center">
+        <!-- استخدم ملف الشعار المرفق: Tawafuq.logo.svg بجانب index.html -->
+        <img src="Tawafuq.logo.svg" alt="شعار توافق Tawāfuq" title="Tawāfuq" />
       </a>
 
       <!-- وسط: التنقّل -->
       <nav class="hidden md:flex order-2 items-center gap-1 text-sm">
         <a href="#about" class="px-3 py-2 rounded-lg hover:bg-gray-100">عن توافق</a>
+        <a href="#defs" class="px-3 py-2 rounded-lg hover:bg-gray-100">التعريفات</a>
         <a href="#kpis" class="px-3 py-2 rounded-lg hover:bg-gray-100">المؤشرات</a>
         <a href="#features" class="px-3 py-2 rounded-lg hover:bg-gray-100">المزايا</a>
         <a href="#test" class="px-3 py-2 rounded-lg hover:bg-gray-100">اختبار التوافق</a>
-        <a href="#verify" class="px-3 py-2 rounded-lg hover:bg-gray-100">استعلام</a>
+        <a href="#verify" class="px-3 py-2 rounded-lg hover:bg-gray-100">استعلام الرقم</a>
         <a href="#wali" class="px-3 py-2 rounded-lg hover:bg-gray-100">موافقة الولي</a>
         <a href="#advisors-admin" class="px-3 py-2 rounded-lg hover:bg-gray-100">المستشارون</a>
         <a href="#bookings" class="px-3 py-2 rounded-lg hover:bg-gray-100">الحجوزات</a>
@@ -79,11 +74,14 @@
         <a href="#contact" class="px-3 py-2 rounded-lg hover:bg-gray-100">تواصل</a>
       </nav>
 
-      <!-- يسار: رؤية 2030 + تلبية -->
-      <div class="brand-area order-3 flex items-center gap-3">
-        <img src="vision2030.png?v=3" alt="شعار رؤية السعودية 2030" title="Vision 2030" />
-        <img src="talbiya.png?v=3" alt="شعار مبادرة تلبية" title="Talbiya Initiative" />
+      <!-- يسار: رؤية 2030 + تلبية (أصغر قليلاً من شعار توافق) -->
+      <div class="brand-left order-3 flex items-center gap-3">
+        <img src="vision2030.png" alt="شعار رؤية السعودية 2030" title="Vision 2030" />
+        <img src="talbiya.png" alt="شعار مبادرة تلبية" title="Talbiya Initiative" />
       </div>
+
+      <!-- زر البدء (يظهر دومًا) -->
+      <a href="#plans" class="btn btn-brand shadow-soft text-sm md:ml-2"><i class="fa-solid fa-id-card ml-1"></i>ابدأ الآن</a>
     </div>
   </header>
 
@@ -95,7 +93,7 @@
           <i class="fa-solid fa-shield-heart ml-1 text-brand"></i>
           منصّة وطنية لتنظيم الخطبة وبناء قرار زواج واعٍ
         </div>
-        <h1 class="text-3xl md:text-5xl font-extrabold leading-[1.2]">
+        <h1 class="text-3xl md:text-5xl font-extrabold leading-[1.2] text-slate-900">
           توافق <span class="text-brand">Tawāfuq</span><br>
           قرار زواج <span class="underline decoration-[var(--brand)]">واثق</span> ومستدام
         </h1>
@@ -104,18 +102,17 @@
           لرفع الموثوقية وحماية الخصوصية.
         </p>
         <div class="mt-6 flex flex-wrap gap-3">
-          <a href="#test" class="btn btn-brand"><i class="fa-solid fa-heart-pulse ml-1"></i>ابدأ اختبار التوافق</a>
+          <a href="#test" class="btn btn-brand shadow-soft"><i class="fa-solid fa-heart-pulse ml-1"></i>ابدأ اختبار التوافق</a>
           <a href="#about" class="btn btn-ghost"><i class="fa-solid fa-circle-info ml-1"></i>تعرّف أكثر</a>
         </div>
         <div class="mt-5 flex flex-wrap gap-2 text-sm">
-          <span class="chip"><i class="fa-solid fa-lock ml-1"></i>تحقّق الهوية</span>
+          <span class="chip"><i class="fa-solid fa-lock ml-1"></i>تحقق الهوية</span>
           <span class="chip"><i class="fa-solid fa-heart-circle-check ml-1"></i>مؤشر توافق وطني</span>
           <span class="chip"><i class="fa-solid fa-user-tie ml-1"></i>استشارات معتمدة</span>
         </div>
       </div>
-
       <!-- KPIs Mini -->
-      <div class="card">
+      <div class="card shadow-soft">
         <div class="text-sm text-slate-500 mb-2">مؤشرات تشغيلية (تجريبية)</div>
         <div class="grid grid-cols-2 gap-3">
           <div class="p-4 rounded-2xl border">
@@ -140,7 +137,7 @@
     </div>
   </section>
 
-  <!-- KPIs Chart -->
+  <!-- مؤشرات لوحة كبيرة -->
   <section id="kpis" class="max-w-7xl mx-auto px-4 pb-10">
     <div class="card">
       <h2 class="text-xl font-bold mb-4">لوحة مؤشرات تشغيلية</h2>
@@ -148,38 +145,61 @@
     </div>
   </section>
 
-  <!-- عن توافق + الرؤية/الرسالة/الأهداف/القيم -->
-  <section id="about" class="max-w-7xl mx-auto px-4 pb-10">
-    <div class="grid md:grid-cols-2 gap-6">
+  <!-- عن توافق (مختصر) -->
+  <section id="about" class="max-w-7xl mx-auto px-4 pb-8">
+    <div class="grid md:grid-cols-3 gap-6">
       <div class="card">
-        <h3 class="text-lg font-bold mb-2">عن «توافق»</h3>
-        <p class="text-slate-700 text-sm leading-7">
-          «توافق | Tawāfuq» منصّة وطنية ذكية تُعين المقبلين على الزواج على اتخاذ قرار واعٍ ومستدام عبر اختبار توافق مقنّن،
-          وتواصل شرعي بإشراف، وإرشاد أسري متخصص. المنصّة إحدى المبادرات المنبثقة من <b>برنامج شباب المملكة حصيف الوطني</b>.
-        </p>
+        <div class="text-brand-dk font-bold mb-1">تحقق وهوية</div>
+        <p class="text-slate-600 text-sm">تكاملات حكومية للتحقق والموثوقية، مع تشفير وتخزين محلي داخل المملكة.</p>
       </div>
       <div class="card">
-        <h3 class="text-lg font-bold mb-2">الرؤية والرسالة</h3>
-        <p class="text-slate-700 text-sm leading-7">
-          <b>الرؤية:</b> أن تكون «توافق» المرجع الوطني الأول لتنظيم الخطبة وبناء الأسر الواعية.
-          <br><b>الرسالة:</b> تمكين المجتمع من قرارات زواج واعية عبر أدوات علمية، وتواصل شرعي منضبط، ومؤشرات ذكية لقياس التوافق الأسري.
-        </p>
+        <div class="text-brand-dk font-bold mb-1">مؤشر توافق</div>
+        <p class="text-slate-600 text-sm">اختبارات قيم/أهداف/سمات/مال/تواصل لتوليد نسبة توافق مفصلة وتوصيات عملية.</p>
+      </div>
+      <div class="card">
+        <div class="text-brand-dk font-bold mb-1">إشراف واستشارات</div>
+        <p class="text-slate-600 text-sm">تواصل شرعي بإشراف + جلسات استشارية معتمدة وخطط نقاش إلزامية عند الحاجة.</p>
       </div>
     </div>
-    <div class="grid md:grid-cols-2 gap-6 mt-6">
+  </section>
+
+  <!-- التعريفات: عن المنصة / الرؤية / الرسالة / الأهداف / الانتماء -->
+  <section id="defs" class="max-w-7xl mx-auto px-4 pb-10">
+    <div class="grid md:grid-cols-2 gap-6">
       <div class="card">
-        <h3 class="text-lg font-bold mb-2">الأهداف</h3>
-        <ul class="text-slate-700 text-sm leading-7 list-disc pr-5">
-          <li>خفض الطلاق المبكر</li>
-          <li>رفع جودة قرار الزواج</li>
-          <li>تقليل تعثّر قروض الزواج بالتأهيل المسبق</li>
-        </ul>
+        <h3 class="text-lg font-bold mb-2 text-brand-dk">عن المنصّة</h3>
+        <p class="text-slate-700 text-sm leading-7">
+          «توافق | Tawāfuq» منصّة وطنية ذكية لتنظيم الخطبة وبناء قرار زواج واعٍ، عبر اختبار توافق مقنّن، تواصل شرعي منضبط،
+          محتوى توعوي قصير، وإرشاد أسري معتمد. تسعى المنصّة إلى خفض الطلاق المبكر ورفع جودة القرار قبل الزواج.
+        </p>
       </div>
       <div class="card">
-        <h3 class="text-lg font-bold mb-2">القيم</h3>
+        <h3 class="text-lg font-bold mb-2 text-brand-dk">الرؤية</h3>
+        <p class="text-slate-700 text-sm leading-7">
+          أن تكون «توافق» المرجع الوطني الأول في تمكين قرارات زواج واعية ومستدامة، انسجامًا مع مستهدفات جودة الحياة.
+        </p>
+      </div>
+      <div class="card">
+        <h3 class="text-lg font-bold mb-2 text-brand-dk">الرسالة</h3>
+        <p class="text-slate-700 text-sm leading-7">
+          تمكين المقبلين على الزواج من أدوات علمية ومؤشرات ذكية وتواصل شرعي منضبط؛ لصنع قرار مسؤول يراعي القيم والمصلحة الأسرية.
+        </p>
+      </div>
+      <div class="card">
+        <h3 class="text-lg font-bold mb-2 text-brand-dk">الأهداف</h3>
         <ul class="text-slate-700 text-sm leading-7 list-disc pr-5">
-          <li>الموثوقية والخصوصية</li><li>الإنصاف والحياد</li><li>المسؤولية الأسرية</li>
+          <li>خفض الطلاق المبكر ورفع جودة قرار الزواج.</li>
+          <li>تعزيز الجدية عبر تحقق الهوية والتأهيل الأسري.</li>
+          <li>تقديم تقارير توافق واضحة وتوصيات عملية.</li>
+          <li>توفير قنوات استشارة معتمدة وإشراف منضبط.</li>
         </ul>
+      </div>
+      <div class="card md:col-span-2">
+        <h3 class="text-lg font-bold mb-2 text-brand-dk">الانتماء البرامجي</h3>
+        <p class="text-slate-700 text-sm leading-7">
+          تعد «توافق» إحدى المبادرات المنبثقة من <span class="font-semibold">برنامج شباب المملكة «حصيف» الوطني</span>،
+          بما يعزّز الأثر الاجتماعي ويدعم استقرار الأسرة السعودية.
+        </p>
       </div>
     </div>
   </section>
@@ -206,7 +226,8 @@
       <div class="grid md:grid-cols-3 gap-4 mb-4">
         <label class="text-sm">الدور
           <select id="party" class="mt-1 w-full border rounded-lg px-3 py-2">
-            <option value="male">ذكر</option><option value="female">أنثى</option>
+            <option value="male">ذكر</option>
+            <option value="female">أنثى</option>
           </select>
         </label>
         <label class="text-sm">المنطقة/البيئة<input id="region" class="mt-1 w-full border rounded-lg px-3 py-2" placeholder="مثال: الرياض"></label>
@@ -214,7 +235,9 @@
         <label class="text-sm">العمر<input id="age" type="number" min="16" class="mt-1 w-full border rounded-lg px-3 py-2"></label>
         <label class="text-sm">التعليم<input id="edu" class="mt-1 w-full border rounded-lg px-3 py-2"></label>
         <label class="text-sm">الوضع المالي
-          <select id="fin" class="mt-1 w-full border rounded-lg px-3 py-2"><option>مستقر</option><option>متوسط</option><option>قيد التحسن</option></select>
+          <select id="fin" class="mt-1 w-full border rounded-lg px-3 py-2">
+            <option>مستقر</option><option>متوسط</option><option>قيد التحسن</option>
+          </select>
         </label>
       </div>
 
@@ -352,19 +375,19 @@
     </div>
   </section>
 
-  <!-- خطط الاشتراك -->
+  <!-- Plans -->
   <section id="plans" class="max-w-7xl mx-auto px-4 pb-12">
     <h2 class="text-xl font-bold mb-4">الاشتراكات</h2>
     <div class="grid md:grid-cols-3 gap-6">
-      <div class="card">
+      <div class="card hover:shadow-soft transition">
         <div class="text-sm text-slate-500">أساسي</div>
         <div class="text-3xl font-extrabold text-brand mt-1">49 ر.س</div>
         <ul class="text-sm text-slate-700 list-disc pr-5 mt-3 space-y-1">
-          <li>تحقّق هوية</li><li>اختبار توافق أساسي</li>
+          <li>تحقق هوية</li><li>اختبار توافق أساسي</li>
         </ul>
         <button class="btn btn-brand mt-4 w-full" onclick="savePlan('basic')"><i class="fa-solid fa-cart-shopping ml-1"></i>اشترك</button>
       </div>
-      <div class="card border-2 border-[color:var(--brand)]">
+      <div class="card hover:shadow-soft transition border-2 border-[color:var(--brand)]">
         <div class="text-sm text-slate-500">متقدّم</div>
         <div class="text-3xl font-extrabold text-brand mt-1">149 ر.س</div>
         <ul class="text-sm text-slate-700 list-disc pr-5 mt-3 space-y-1">
@@ -372,7 +395,7 @@
         </ul>
         <button class="btn btn-brand mt-4 w-full" onclick="savePlan('pro')">اشترك</button>
       </div>
-      <div class="card">
+      <div class="card hover:shadow-soft transition">
         <div class="text-sm text-slate-500">نخبوي</div>
         <div class="text-3xl font-extrabold text-brand mt-1">299 ر.س</div>
         <ul class="text-sm text-slate-700 list-disc pr-5 mt-3 space-y-1">
@@ -383,7 +406,7 @@
     </div>
   </section>
 
-  <!-- تواصل -->
+  <!-- Contact -->
   <section id="contact" class="bg-sand/40">
     <div class="max-w-7xl mx-auto px-4 py-10">
       <div class="card">
@@ -422,7 +445,7 @@
     setTimeout(()=>{ el.style.opacity=0; setTimeout(()=>el.classList.add('hidden'), 300); }, 2400);
   }
 
-  // ==== Support Draft ====
+  // ==== Support Draft (Contact) ====
   const SUP_KEY='tawafuq_support_draft_v1';
   function saveSupportDraft(){ const o={n:supName.value,m:supMail.value,t:supMsg.value}; localStorage.setItem(SUP_KEY, JSON.stringify(o)); notify('ok','تم حفظ المسودة'); }
   function clearSupportDraft(){ localStorage.removeItem(SUP_KEY); supName.value=''; supMail.value=''; supMsg.value=''; notify('ok','تم المسح'); }
@@ -432,7 +455,7 @@
   const PLAN_KEY='tawafuq_plan';
   function savePlan(name){ localStorage.setItem(PLAN_KEY, name); notify('ok','تم حفظ الباقة: '+name); }
 
-  // ==== Advisors Admin ====
+  // ==== Advisors Admin (Local) ====
   const ADV_KEY='tawafuq_advisors_v1';
   function loadAdvisors(){ try{ return JSON.parse(localStorage.getItem(ADV_KEY))||[] }catch(e){ return [] } }
   function saveAdvisors(x){ localStorage.setItem(ADV_KEY, JSON.stringify(x)); }
@@ -518,7 +541,8 @@
       +'</tr>';
     }
     body.innerHTML = html; rebuildAdvisorSelect();
-    document.getElementById('kpiBookings').textContent = B.length; // Mini KPI
+    // Update hero mini KPIs
+    document.getElementById('kpiBookings').textContent = B.length;
   }
   function deleteBooking(i){ var B=loadBookings(); B.splice(i,1); saveBookings(B); renderBookings(); }
   function bookingPDFByIndex(i){ var B=loadBookings(); var rec=B[i]; if(rec) bookingPDF(rec); }
@@ -552,7 +576,7 @@
     new Chart(ctx,{ type:'bar', data, options:{ responsive:true, plugins:{legend:{display:false}} } });
   }
 
-  // ==== اختبار الذكاء (30 سؤالًا) ====
+  // ==== Smart Test (30Q) ====
   const AXES=[
     {key:'values', title:'القيم', weight:0.25},
     {key:'goals', title:'الأهداف', weight:0.20},
@@ -583,7 +607,10 @@
   function saveSessions(o){ localStorage.setItem(SESS_KEY, JSON.stringify(o)); }
 
   function genBase(){ const chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; let s=''; for(let i=0;i<5;i++){ s+=chars[Math.floor(Math.random()*chars.length)] } return s }
-  function genCode(){ const base=genBase(); let sum=0; for(const ch of base){ sum+=ch.charCodeAt(0) } const chk=(sum%7).toString(); return 'TWFQ-'+base+'-'+chk; }
+  function genCode(){
+    const base=genBase(); let sum=0; for(const ch of base){ sum+=ch.charCodeAt(0) } const chk=(sum%7).toString();
+    return 'TWFQ-'+base+'-'+chk;
+  }
   function validCodeFormat(code){ return /^TWFQ\-[A-Z0-9]{5}\-\d$/.test(code||'') }
 
   let currentCode=null, currentParty=null;
@@ -666,10 +693,10 @@
       const dm = demoSimilarity(S.male.meta, S.female.meta);
       const final = Math.round(total*0.75 + dm*0.25);
       showResults(final, axisScores);
-      // Mini KPI تحديث
+      // KPIs mini
       document.getElementById('kpiTests').textContent = (parseInt(document.getElementById('kpiTests').textContent||'0')+1);
       document.getElementById('kpiAvg').textContent = final+'%';
-      // حذف تقدّم الجلسة
+      // clear progress
       localStorage.removeItem('tawafuq_progress_'+currentCode+'_male');
       localStorage.removeItem('tawafuq_progress_'+currentCode+'_female');
     } else {
@@ -729,7 +756,7 @@
     box.innerHTML = '<div class="p-3 bg-white border rounded-xl"><div class="text-lg font-bold text-brand">'+final+'%</div><div class="mt-2">'+badges+'</div><div class="text-xs text-gray-500 mt-2">نتيجة محسوبة محليًا (تجريبي)</div></div>';
   }
 
-  // ==== توقيع الولي ====
+  // ==== Wali consent (signature) ====
   let drawing=false;
   function signInit(){ const c=document.getElementById('signPad'); if(!c) return; const ctx=c.getContext('2d'); ctx.strokeStyle='#000'; ctx.lineWidth=2;
     function pos(e){ const r=c.getBoundingClientRect(); const x=(e.touches?e.touches[0].clientX:e.clientX)-r.left; const y=(e.touches?e.touches[0].clientY:e.clientY)-r.top; return {x,y}; }
@@ -750,10 +777,12 @@
     document.getElementById('waliMsg').textContent='تم حفظ موافقة وليّ الأمر.'; notify('ok','حُفظت الموافقة');
   }
 
-  // ==== KPI Chart + Mini ====
+  // ==== KPI mini hydrate ====
   function hydrateMiniKPIs(){
+    const tests = parseInt(localStorage.getItem('tawafuq_tests_count')||'0');
+    if(tests) document.getElementById('kpiTests').textContent = tests;
     const avgEl=document.getElementById('kpiAvg');
-    if(avgEl.textContent==='—%') avgEl.textContent='78%';
+    if(avgEl.textContent==='—%'){ avgEl.textContent='78%'; }
   }
 
   // ==== Init ====
