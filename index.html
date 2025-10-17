@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>توافق | Tawāfuq — منصّة وطنية لتنظيم الخطبة وبناء قرار زواج واعٍ</title>
-  <meta name="description" content="منصّة وطنية ذكية تقلّل أخطاء قرار الزواج عبر اختبارات توافق، تواصل بإشراف، ومحتوى توعوي." />
+  <meta name="description" content="منصّة وطنية ذكية لرفع جودة قرار الزواج عبر اختبارات توافق علمية، تواصل بإشراف، محتوى توعوي، واستشارات معتمدة." />
   <script defer src="https://cdn.tailwindcss.com"></script>
 
   <style>
@@ -13,43 +13,55 @@
       --ink:#0f172a; --muted:#64748b; --surface:#ffffff;
     }
     .bg-brand{background:var(--brand)} .text-brand{color:var(--brand)} .text-brand-dk{color:var(--brand-dk)}
-    .card{background:#fff;border:1px solid rgba(15,23,42,.08);border-radius:1.25rem;padding:1.25rem}
-    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1rem;border-radius:.9rem;font-weight:700}
-    .btn-brand{background:var(--brand);color:#fff}
     .shadow-soft{box-shadow:0 10px 30px rgba(14,165,168,.15)}
-    section{scroll-margin-top:90px}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1rem;border-radius:.9rem;font-weight:700}
+    .btn-brand{background:var(--brand);color:#fff}
+    .btn-ghost{background:#fff;border:1px solid #e5e7eb;color:#0f172a}
+    .btn-ghost:hover{background:#f8fafc}
     .badge{ display:inline-block; padding:.25rem .5rem; border:1px solid #e5e7eb; border-radius:.5rem; font-size:.75rem }
-    @media print{ nav, header, footer, #hero {display:none!important} #resultsArea{display:block!important} }
 
-    /* تحجيم منطقي لشعار الهيدر والصور المرافقة */
+    .card{background:#fff;border:1px solid rgba(2,6,23,.08);border-radius:1.25rem;padding:1.25rem;box-shadow:0 10px 25px -12px rgba(2,6,23,.18)}
+    .card:hover{box-shadow:0 18px 40px -16px rgba(2,6,23,.25);transform:translateY(-2px);transition:.25s}
+
+    .container {max-width: 72rem; margin-inline: auto; padding-inline: 1rem}
+    .section{padding-block:3.5rem}
+    @media (min-width:1024px){ .section{padding-block:4.5rem} }
+    section{scroll-margin-top:90px}
+
+    .section-title{font-weight:800;color:#0f172a}
+    @media (min-width:1024px){ .section-title{font-size:2rem} }
+    .section-kicker{color:#64748b;font-size:.9rem;margin-bottom:.35rem}
+    .lead{color:#475569;line-height:1.85}
+    @media (min-width:1024px){ .lead{font-size:1.05rem} }
+
+    /* تحجيم منفصل للشعارات */
     .brand-main img{height:56px;width:auto;image-rendering:auto}
-    @media (min-width:768px){ .brand-main img{height:92px} } /* شعار توافق أكبر على الكمبيوتر */
+    @media (min-width:768px){ .brand-main img{height:92px} }
+    @media (min-width:1024px){ .brand-main img{height:100px} } /* تكبير إضافي على الكمبيوتر */
 
     .brand-partners img{height:40px;width:auto;object-fit:contain}
     @media (min-width:768px){ .brand-partners img{height:48px} }
+    @media (min-width:1024px){ .brand-partners img{height:48px} }
 
-    /* Vision 2030: اتساق دقيق للطول/العرض */
+    /* Vision 2030 & Talbiya تناسق دقيق */
     .brand-partners img[alt*="2030"]{height:46px;width:auto;object-fit:contain}
-    @media (min-width:768px){ .brand-partners img[alt*="2030"]{height:56px} }
-
-    /* شعار تلبية: أصغر قليلًا من 2030 للتوازن */
+    @media (min-width:1024px){ .brand-partners img[alt*="2030"]{height:60px} }
     .brand-partners img[alt*="تلبية"]{height:38px}
-    @media (min-width:768px){ .brand-partners img[alt*="تلبية"]{height:46px} }
+    @media (min-width:1024px){ .brand-partners img[alt*="تلبية"]{height:50px} }
 
-    /* شريط تنقّل مضغوط على سطر واحد */
+    /* تحسين تمرير الروابط */
+    html { scroll-behavior: smooth; }
     .nav-link{white-space:nowrap}
+    @media print{ nav, header, footer, #hero {display:none!important} #resultsArea{display:block!important} }
   </style>
 </head>
 <body class="bg-gray-50 text-slate-800">
-  <!-- Toast بسيط للاختبار -->
-  <div id="toast" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 hidden px-4 py-2 rounded-lg text-white"></div>
 
   <!-- Header -->
   <header class="bg-white/90 backdrop-blur border-b sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-      <!-- يمين: شعار توافق -->
+    <div class="container !py-3 flex items-center justify-between">
+      <!-- يمين: شعار توافق (SVG مدمج) -->
       <a href="#hero" class="brand-area brand-main order-1 flex items-center" title="توافق Tawāfuq">
-        <!-- SVG مدمج (لا يعتمد على ملفات خارجية) -->
         <img alt="شعار توافق Tawāfuq" src="data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?><svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 24 24' fill='%230EA5A8'><path d='M12 21c-5-4.4-8-7.5-8-11A8 8 0 0 1 12 2a8 8 0 0 1 8 8c0 3.5-3 6.6-8 11z'/></svg>">
       </a>
 
@@ -68,25 +80,27 @@
         <a href="#contact" class="px-3 py-2 rounded-lg hover:bg-gray-100 nav-link">تواصل معنا</a>
       </nav>
 
-      <!-- يسار: رؤية 2030 + تلبية -->
-      <div class="brand-area brand-partners order-3 flex items-center gap-3">
-        <!-- ضع ملفات الصور التالية في الجذر بنفس الأسماء أو غيّرها لما لديك -->
+      <!-- يسار: شعارات الشركاء -->
+      <div class="brand-area brand-partners order-3 hidden sm:flex items-center gap-3 md:gap-4">
+        <!-- ضع الصور في جذر المستودع أو غيّر المسارات -->
         <img src="vision2030.png" alt="شعار رؤية السعودية 2030" title="Vision 2030" />
         <img src="talbiya.png" alt="شعار مبادرة تلبية" title="Talbiya Initiative" />
       </div>
 
-      <!-- زر سريع (مثال) -->
+      <!-- زر سريع -->
       <a href="#plans" class="btn btn-brand shadow-soft text-sm md:ml-2">ابدأ الآن</a>
     </div>
   </header>
 
   <!-- HERO -->
-  <section id="hero" class="hero-grad">
-    <div class="max-w-7xl mx-auto px-4 py-10 sm:py-14 grid lg:grid-cols-2 gap-8 items-center">
+  <section id="hero" class="section bg-gradient-to-b from-white to-teal-50/40">
+    <div class="container grid lg:grid-cols-2 gap-8 items-center">
       <div>
-        <div class="chip mb-3 bg-white border shadow-soft">منصّة وطنية لتنظيم الخطبة ورفع جودة قرار الزواج</div>
-        <h1 class="text-3xl lg:text-4xl font-extrabold leading-[1.2] text-gray-900 mb-3">قرار زواج واثق ومستدام</h1>
-        <p class="text-gray-600 text-sm sm:text-base leading-relaxed mb-4">
+        <div class="badge mb-3 bg-white">منصّة وطنية لتنظيم الخطبة ورفع جودة قرار الزواج</div>
+        <h1 class="section-title text-3xl lg:text-5xl leading-[1.15] mb-3">
+          قرار زواج واثق ومستدام
+        </h1>
+        <p class="lead mb-5">
           اختبارات توافق مُقنّنة، وتواصل بإشراف، ومحتوى توعوي قصير، وإرشاد أسري متخصص — مع حماية
           عالية للخصوصية وإمكان التكامل مع الجهات الرسمية لرفع الموثوقية.
         </p>
@@ -109,67 +123,209 @@
   </section>
 
   <!-- الرؤية/الرسالة/الأهداف -->
-  <section id="vision" class="py-16 bg-gradient-to-b from-white to-teal-50/40 border-t border-gray-100">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="text-center mb-10">
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2">رؤيتنا ورسالتنا</h2>
-        <p class="text-gray-600 text-sm sm:text-base">نؤمن بأن قرار الزواج الناجح يبدأ بالوعي والمعرفة والثقة، وهذا ما نصنعه في توافق.</p>
-      </div>
+  <section id="vision" class="section bg-gradient-to-b from-white to-teal-50/40 border-t border-gray-100">
+    <div class="container">
+      <p class="section-kicker">عن المنصّة</p>
+      <h2 class="section-title text-2xl sm:text-3xl mb-2">رؤيتنا ورسالتنا</h2>
+      <p class="lead mb-8">نؤمن بأن قرار الزواج الناجح يبدأ بالوعي والمعرفة والثقة، وهذا ما نصنعه في توافق.</p>
+
       <div class="grid md:grid-cols-2 gap-6">
-        <div class="card shadow-soft p-8">
+        <div class="card">
           <h3 class="text-xl font-extrabold text-gray-900 mb-3">الرؤية</h3>
-          <p class="text-gray-700 leading-8">
-            أن تكون منصة «توافق» المرجع الوطني الأول في تحقيق التوافق الزواجي والاجتماعي عبر أدوات علمية وذكاء اصطناعي يسهّل اتخاذ قرارات الارتباط بثقة ووعي.
-          </p>
+          <p class="lead">أن تكون منصة «توافق» المرجع الوطني الأول في تحقيق التوافق الزواجي والاجتماعي عبر أدوات علمية وذكاء اصطناعي يسهّل اتخاذ قرارات الارتباط بثقة ووعي.</p>
         </div>
-        <div class="card shadow-soft p-8">
+        <div class="card">
           <h3 class="text-xl font-extrabold text-gray-900 mb-3">الرسالة</h3>
-          <p class="text-gray-700 leading-8">
-            نُمكّن الأفراد وأولياء أمورهم من اتخاذ قرارات زواجٍ مبنية على تحليل شامل للشخصيات والقيم والميول ونمط الحياة،
-            باستخدام تقنيات حديثة تجمع بين الذكاء الاصطناعي والاستشارات المتخصصة، بما يحقق استقرار الأسرة ويدعم جودة الحياة.
-          </p>
+          <p class="lead">نُمكّن الأفراد وأولياء أمورهم من اتخاذ قرارات زواجٍ مبنية على تحليل شامل للشخصيات والقيم والميول ونمط الحياة، باستخدام تقنيات حديثة تجمع بين الذكاء الاصطناعي والاستشارات المتخصصة، بما يحقق استقرار الأسرة ويدعم جودة الحياة.</p>
         </div>
       </div>
+
       <div class="mt-10">
-        <h3 class="text-lg font-bold text-gray-900 mb-4">الأهداف</h3>
+        <h3 class="text-lg font-extrabold text-gray-900 mb-4">الأهداف</h3>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div class="card p-6 hover:shadow-lg transition">
-            <div class="text-lg font-extrabold text-gray-900 mb-2">تعزيز الوعي بالاختيار السليم</div>
-            <p class="text-base text-gray-700 leading-8">تحويل القرار من العاطفة إلى المعرفة عبر محتوى وتقييمات علمية.</p>
+          <div class="card">
+            <div class="flex items-start gap-3">
+              <div class="w-9 h-9 rounded-xl bg-teal-600 text-white grid place-items-center font-bold">1</div>
+              <div>
+                <div class="text-lg font-extrabold text-gray-900 mb-1">تعزيز الوعي بالاختيار السليم</div>
+                <p class="text-gray-700 leading-8">تحويل القرار من العاطفة إلى المعرفة عبر محتوى وتقييمات علمية.</p>
+              </div>
+            </div>
           </div>
-          <div class="card p-6 hover:shadow-lg transition">
-            <div class="text-lg font-extrabold text-gray-900 mb-2">تحليل رقمي لنِسَب التوافق</div>
-            <p class="text-base text-gray-700 leading-8">قياس متعدد الأبعاد للشخصية والقيم ونمط الحياة والتفضيلات.</p>
+
+          <div class="card">
+            <div class="flex items-start gap-3">
+              <div class="w-9 h-9 rounded-xl bg-teal-600 text-white grid place-items-center font-bold">2</div>
+              <div>
+                <div class="text-lg font-extrabold text-gray-900 mb-1">تحليل رقمي لنِسَب التوافق</div>
+                <p class="text-gray-700 leading-8">قياس متعدد الأبعاد للشخصية والقيم ونمط الحياة والتفضيلات.</p>
+              </div>
+            </div>
           </div>
-          <div class="card p-6 hover:shadow-lg transition">
-            <div class="text-lg font-extrabold text-gray-900 mb-2">دعم أولياء الأمور</div>
-            <p class="text-base text-gray-700 leading-8">لوحات وأذونات مُخصّصة لوليّ الأمر مع الحفاظ على خصوصية الأبناء.</p>
+
+          <div class="card">
+            <div class="flex items-start gap-3">
+              <div class="w-9 h-9 rounded-xl bg-teal-600 text-white grid place-items-center font-bold">3</div>
+              <div>
+                <div class="text-lg font-extrabold text-gray-900 mb-1">دعم أولياء الأمور</div>
+                <p class="text-gray-700 leading-8">لوحات وأذونات مُخصّصة لوليّ الأمر مع الحفاظ على خصوصية الأبناء.</p>
+              </div>
+            </div>
           </div>
-          <div class="card p-6 hover:shadow-lg transition">
-            <div class="text-lg font-extrabold text-gray-900 mb-2">استقرار الأسرة</div>
-            <p class="text-base text-gray-700 leading-8">المساهمة في الحد من الانفصال عبر وعي مسبق بالتوافق ومناطق التعارض.</p>
+
+          <div class="card">
+            <div class="flex items-start gap-3">
+              <div class="w-9 h-9 rounded-xl bg-teal-600 text-white grid place-items-center font-bold">4</div>
+              <div>
+                <div class="text-lg font-extrabold text-gray-900 mb-1">استقرار الأسرة</div>
+                <p class="text-gray-700 leading-8">المساهمة في الحد من الانفصال عبر وعي مسبق بالتوافق ومناطق التعارض.</p>
+              </div>
+            </div>
           </div>
-          <div class="card p-6 hover:shadow-lg transition">
-            <div class="text-lg font-extrabold text-gray-900 mb-2">ذكاء اصطناعي مُفسَّر</div>
-            <p class="text-base text-gray-700 leading-8">توصيات واضحة قابلة للفهم وليست «صندوقًا أسود».</p>
+
+          <div class="card">
+            <div class="flex items-start gap-3">
+              <div class="w-9 h-9 rounded-xl bg-teal-600 text-white grid place-items-center font-bold">5</div>
+              <div>
+                <div class="text-lg font-extrabold text-gray-900 mb-1">ذكاء اصطناعي مُفسَّر</div>
+                <p class="text-gray-700 leading-8">توصيات واضحة قابلة للفهم وليست «صندوقًا أسود».</p>
+              </div>
+            </div>
           </div>
-          <div class="card p-6 hover:shadow-lg transition">
-            <div class="text-lg font-extrabold text-gray-900 mb-2">خصوصية وأمان</div>
-            <p class="text-base text-gray-700 leading-8">معايير تشفير وحوكمة بيانات تضمن السرية ودقة التوصيات.</p>
+
+          <div class="card">
+            <div class="flex items-start gap-3">
+              <div class="w-9 h-9 rounded-xl bg-teal-600 text-white grid place-items-center font-bold">6</div>
+              <div>
+                <div class="text-lg font-extrabold text-gray-900 mb-1">خصوصية وأمان</div>
+                <p class="text-gray-700 leading-8">معايير تشفير وحوكمة بيانات تضمن السرية ودقة التوصيات.</p>
+              </div>
+            </div>
           </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- أقسام لاحقة (نماذج مختصرة — اربطها بواجهتك الحالية) -->
+  <section id="journeys" class="section">
+    <div class="container">
+      <p class="section-kicker">كيف أستخدم المنصّة؟</p>
+      <h3 class="section-title text-2xl mb-2">رحلة المستخدم</h3>
+      <p class="lead">التعرّف → التهيئة → الاختبار → النتيجة → جسر التوافق → المتابعة.</p>
+    </div>
+  </section>
+
+  <section id="kpis" class="section bg-white border-t">
+    <div class="container">
+      <p class="section-kicker">تشغيل</p>
+      <h3 class="section-title text-2xl mb-2">لوحة المؤشرات</h3>
+      <p class="lead">متوسط التوافق، اختبارات مكتملة، جلسات محجوزة، شركاء داعمون (عرض تجريبي).</p>
+    </div>
+  </section>
+
+  <section id="features" class="section">
+    <div class="container">
+      <p class="section-kicker">قدرات</p>
+      <h3 class="section-title text-2xl mb-2">مزايا وخدمات</h3>
+      <p class="lead">اختبار التوافق، الوضع الفردي، موافقة وليّ الأمر، الاستعلام، الاستشارات والحجوزات، الباقات والاشتراكات… إلخ.</p>
+    </div>
+  </section>
+
+  <!-- نقاط ربط شائعة موجودة في مشروعك الأصلي: غيّر النص/المحتوى لاحقًا حسب الحاجة -->
+  <section id="compat-test" class="section bg-white border-t">
+    <div class="container">
+      <h3 class="section-title text-2xl mb-4">اختبار التوافق الذكي (30 سؤالًا)</h3>
+      <p class="lead">أجب أنت/أنتم على مقياس 1–5 ثم احتسبوا النتيجة المشتركة واطّلعوا على محاور القوة والتحسين.</p>
+      <!-- ضع نموذجك/سكريبتك الخاص هنا -->
+    </div>
+  </section>
+
+  <section id="individual-mode" class="section">
+    <div class="container">
+      <h3 class="section-title text-2xl mb-2">الوضع الفردي (بدون شريك)</h3>
+      <p class="lead">أنشئ بروفايلك واحفظه محليًا. لاحقًا اطلب مطابقات مقترحة (تجريبي).</p>
+    </div>
+  </section>
+
+  <section id="inquiry" class="section bg-white border-t">
+    <div class="container">
+      <h3 class="section-title text-2xl mb-2">استعلام الجهات برقم التوافق</h3>
+      <p class="lead">أدخل رقم التوافق بصيغة TWFQ-XXXX-# للتحقق (عرض تجريبي).</p>
+    </div>
+  </section>
+
+  <section id="guardian-approval" class="section">
+    <div class="container">
+      <h3 class="section-title text-2xl mb-2">موافقة وليّ الأمر (تجريبية)</h3>
+      <p class="lead">تسجيل موافقة وليّ الأمر بعد ظهور النتيجة، مع حفظ سجلات محليًا لأغراض العرض.</p>
+    </div>
+  </section>
+
+  <section id="bookings" class="section bg-white border-t">
+    <div class="container">
+      <h3 class="section-title text-2xl mb-2">حجوزات الاستشارات (تجريبي محليًا)</h3>
+      <p class="lead">احجز جلسة مع مستشار معتمد. سيتم تفعيل الإشعارات والتذكير في الإصدار الإنتاجي.</p>
+    </div>
+  </section>
+
+  <section id="plans" class="section">
+    <div class="container">
+      <h3 class="section-title text-2xl mb-4">الباقات والاشتراكات</h3>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- أساسي -->
+        <div class="card">
+          <div class="text-sm text-gray-500 mb-1">أساسي</div>
+          <div class="text-2xl font-extrabold mb-2">49 ر.س</div>
+          <ul class="text-sm text-gray-700 space-y-1">
+            <li>توثيق الهوية</li><li>اختبار توافق أساسي</li>
+          </ul>
+          <a href="#contact" class="btn btn-brand mt-4">اشترك</a>
+        </div>
+        <!-- متقدم -->
+        <div class="card">
+          <div class="text-sm text-gray-500 mb-1">متقدّم</div>
+          <div class="text-2xl font-extrabold mb-2">149 ر.س</div>
+          <ul class="text-sm text-gray-700 space-y-1">
+            <li>30 سؤالًا + تقرير محاور</li><li>توصيات ذكية</li>
+          </ul>
+          <a href="#contact" class="btn btn-brand mt-4">اشترك</a>
+        </div>
+        <!-- نخبوي -->
+        <div class="card">
+          <div class="text-sm text-gray-500 mb-1">نخبوي</div>
+          <div class="text-2xl font-extrabold mb-2">299 ر.س</div>
+          <ul class="text-sm text-gray-700 space-y-1">
+            <li>جلسة استشارية</li><li>شهادة توافق PDF</li>
+          </ul>
+          <a href="#contact" class="btn btn-brand mt-4">اشترك</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- أمثلة لأقسام لاحقة: غيّر IDs حسب ملفك الأصلي أو اربطها لاحقًا -->
-  <section id="journeys" class="py-12"><div class="max-w-7xl mx-auto px-4"><h3 class="font-bold mb-2">رحلة المستخدم</h3><p class="text-sm text-gray-600">تعريف مختصر…</p></div></section>
-  <section id="kpis" class="py-12 bg-white border-t"><div class="max-w-7xl mx-auto px-4"><h3 class="font-bold mb-2">لوحة المؤشرات</h3><p class="text-sm text-gray-600">تعريف مختصر…</p></div></section>
-  <section id="features" class="py-12"><div class="max-w-7xl mx-auto px-4"><h3 class="font-bold mb-2">مزايا وخدمات</h3><p class="text-sm text-gray-600">تعريف مختصر…</p></div></section>
+  <section id="contact" class="section bg-white border-t">
+    <div class="container">
+      <h3 class="section-title text-2xl mb-2">تواصل معنا</h3>
+      <p class="lead mb-4">أخبرنا كيف نقدر نخدمك، سنعود لك قريبًا.</p>
+      <!-- نموذج بسيط للعرض فقط -->
+      <form class="grid sm:grid-cols-2 gap-4">
+        <input class="card" placeholder="اسمك الكامل" />
+        <input class="card" type="email" placeholder="you@example.com" />
+        <textarea class="card sm:col-span-2" rows="4" placeholder="رسالتك"></textarea>
+        <div class="sm:col-span-2 flex gap-3">
+          <button type="button" class="btn btn-ghost">حفظ مسودة</button>
+          <button type="reset" class="btn">مسح</button>
+        </div>
+      </form>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="py-8 bg-gray-900 text-gray-300">
-    <div class="max-w-7xl mx-auto px-4 flex items-center justify-between">
+    <div class="container flex items-center justify-between">
       <p class="text-xs">© جميع الحقوق محفوظة لشركة تلبية للبحث والتطوير.</p>
       <div class="flex gap-2 text-xs">
         <span class="px-2 py-1 rounded bg-gray-800">Tawāfuq</span>
@@ -177,5 +333,6 @@
       </div>
     </div>
   </footer>
+
 </body>
 </html>
